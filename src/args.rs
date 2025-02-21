@@ -6,10 +6,4 @@ use std::path::PathBuf;
 pub struct Cli {
     ///List of input files
     pub input_files: Vec<PathBuf>,
-
-    ///Action to perform
-    pub action: String,
-
-    ///Output file
-    pub output_file: PathBuf,
 }

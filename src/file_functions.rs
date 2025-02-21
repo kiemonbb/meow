@@ -1,8 +1,8 @@
-use std::{fs::{self, File}, io::{BufRead, BufReader,Write}, path::PathBuf};
+use std::{fs::{self, File}, io::{BufRead, BufReader, Read, Write}, path::PathBuf};
 
 use anyhow::{Result,bail};
 
-
+#[allow(dead_code)]
 pub fn display_file(file_path: &PathBuf) -> Result<()> {
     let file = File::open(file_path)?;
     let content = BufReader::new(file);
@@ -15,16 +15,11 @@ pub fn display_file(file_path: &PathBuf) -> Result<()> {
     Ok(())
 }
 
-pub fn concatenate_file(input_paths: &[PathBuf], output_path: &PathBuf) -> Result<()> {
-    let mut output_file = File::create(output_path)?;
-
-    for input_path in input_paths {
-        let input_file = File::open(input_path)?;
-        let content = BufReader::new(input_file);
-        for line in content.lines() {
-            writeln!(output_file,"{}",line?)?;
-        }
+pub fn write_file<T: Read>(input: T) -> Result<()> {
+    let content = BufReader::new(input);
+    for line in content.lines() {
+        let line_content = line?;
+        println!("{}",line_content);
     }
-    display_file(output_path)?;
     Ok(())
 }
