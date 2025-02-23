@@ -22,6 +22,7 @@ meow [FLAGS] [INPUT_FILES]...
 
 - `-n`, `--number` - Show line numbers for all lines.
 - `-b`, `--blank` - Do not show line numbers for blank lines.
+- `-s`, `--sus` - Do not display error message if the program cannot find an input file
 - `-h`, `--help` - Display help message.
 
 ### Examples:
